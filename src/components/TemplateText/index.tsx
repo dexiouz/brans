@@ -186,7 +186,7 @@ TemplateText.defaultProps = {
 
 const styles = StyleSheet.create({
   default: {
-    fontSize: IS_SHORT_DEVICE ? hp(15) : hp(18),
+    fontSize: IS_SHORT_DEVICE ? hp(15) : hp(17),
     color: WHITE,
   },
 });

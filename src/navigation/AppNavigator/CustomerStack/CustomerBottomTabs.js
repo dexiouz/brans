@@ -4,10 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import {STANDARD_HEADER_APP} from '../../../components/header/screenOptions';
-import CustomerDashBoard from '../../../screens/Customer/CustomerDashBoard/CustomerDashboard';
-import Book from '../../../screens/Customer/Book/Book';
-import Bookings from '../../../screens/Customer/Bookings/Bookings';
+import CustomerDashboardStack from './CustomerDashboardStack';
+import BookingsStack from './BookingsStack';
+import BookStack from './BookStack';
 import {BACKGROUND, WHITE} from '../../../consts/COLOURS';
 import {IS_LARGE_SCREEN, IS_ANDROID} from '../../../consts/LAYOUT';
 const {Navigator, Screen} = createBottomTabNavigator();
@@ -15,14 +14,13 @@ const {Navigator, Screen} = createBottomTabNavigator();
 const CustomerTabNavigator = () => (
   <Navigator
     screenOptions={{
-      ...STANDARD_HEADER_APP,
+      headerShown: false,
       tabBarActiveTintColor: WHITE,
       tabBarStyle: styles.tabBarStyle,
-      tabBarShowLabel: false,
     }}>
     <Screen
       name="CustomerDashBoard"
-      component={CustomerDashBoard}
+      component={CustomerDashboardStack}
       options={{
         tabBarLabel: 'Dashboard',
         tabBarIcon: ({color, size}) => (
@@ -32,7 +30,7 @@ const CustomerTabNavigator = () => (
     />
     <Screen
       name="Book"
-      component={Book}
+      component={BookStack}
       options={{
         tabBarLabel: 'Book',
         tabBarIcon: ({color, size}) => (
@@ -42,7 +40,7 @@ const CustomerTabNavigator = () => (
     />
     <Screen
       name="Bookings"
-      component={Bookings}
+      component={BookingsStack}
       options={{
         tabBarLabel: 'Bookings',
         tabBarIcon: ({color, size}) => (

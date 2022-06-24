@@ -17,7 +17,7 @@ const navTheme = {
 const Route = () => (
   <NavigationContainer theme={navTheme}>
     <AppStack.Navigator screenOptions={{headerShown: false}}>
-      {/* <AppStack.Screen name="AppNavigator" component={AppNavigator} /> */}
+      <AppStack.Screen name="AppNavigator" component={AppNavigator} />
       <AppStack.Screen name="AuthStackScreen" component={AuthStackScreen} />
     </AppStack.Navigator>
   </NavigationContainer>

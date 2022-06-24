@@ -38,7 +38,7 @@ export const STANDARD_HEADER_APP = {
 };
 
 export const Title = ({title}) => (
-  <TemplateText color={WHITE} bold size={20}>
+  <TemplateText color={WHITE} bold size={18}>
     {title}
   </TemplateText>
 );
