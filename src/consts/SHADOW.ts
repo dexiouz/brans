@@ -75,5 +75,5 @@ export const SHADOW: (
 
 export default {
   styles,
-  SHADOW,,
+  SHADOW,
 };

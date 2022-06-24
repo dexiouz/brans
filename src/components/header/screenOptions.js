@@ -1,53 +1,49 @@
 import React from 'react';
-import {Dimensions, View, StyleSheet, Text} from 'react-native';
-import COLORS from '../../consts/COLORS';
-import {LARGE_SCREEN} from '../../utils/CONSTS';
-import {IS_ANDROID} from '../../utils/CONSTS';
+import {Dimensions} from 'react-native';
+import {BACKGROUND, PRIMARY, WHITE, HEADER} from '../../consts/COLOURS';
+import {IS_LARGE_SCREEN, IS_ANDROID} from '../../consts/LAYOUT';
+import TemplateText from '../TemplateText';
 
-export const {width: SCREEN_WIDTH, heigh: SCREEN_HEIGHT} =
-  Dimensions.get('screen');
-
+const headerStyleApp = {
+  backgroundColor: BACKGROUND,
+  shadowColor: 'transparent',
+  height: IS_LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
+};
+const headerStyleAuth = {
+  backgroundColor: HEADER,
+  shadowColor: 'transparent',
+  height: IS_LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
+};
+const headerTitleStyle = {
+  textAlign: 'center',
+};
 export const STANDARD_HEADER_AUTH = {
   headerBackTitleVisible: false,
-  headerTintColor: COLORS.WHITE,
-  headerStyle: styles.headerStyleAuth,
+  headerTintColor: WHITE,
+  headerStyle: headerStyleAuth,
+  headerTitle: () => <Title title="brans" />,
   headerTitleAlign: 'center',
-  headerTitleStyle: styles.headerTitleStyle,
-  cardStyle: {backgroundColor: COLORS.BACKGROUND},
+  headerTitleStyle: headerTitleStyle,
+  cardStyle: {backgroundColor: 'red'},
 };
 
 export const STANDARD_HEADER_APP = {
   headerBackTitleVisible: false,
-  headerTintColor: COLORS.WHITE,
-  headerTitle: () => (
-    <View style={{marginVertical: 10}}>
-      <Text>brans</Text>
-    </View>
-  ),
-  headerStyle: styles.headerStyleApp,
+  headerTintColor: WHITE,
+  headerTitle: () => <Title title="brans" />,
+  headerStyle: headerStyleApp,
   headerTitleAlign: 'center',
-  headerTitleStyle: styles.headerTitleStyle,
-  cardStyle: {backgroundColor: COLORS.BACKGROUND},
+  headerTitleStyle: headerTitleStyle,
+  cardStyle: {backgroundColor: BACKGROUND},
 };
+
+export const Title = ({title}) => (
+  <TemplateText color={WHITE} bold size={20}>
+    {title}
+  </TemplateText>
+);
 
 export default {
   STANDARD_HEADER_AUTH,
   STANDARD_HEADER_APP,
 };
-
-const styles = StyleSheet.create({
-  headerStyleApp: {
-    backgroundColor: COLORS.BACKGROUND,
-    shadowColor: 'transparent',
-    height: LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
-  },
-  headerStyleAuth: {
-    backgroundColor: COLORS.HEADER,
-    shadowColor: 'transparent',
-    height: LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
-  },
-  headerTitleStyle: {
-    fontSize: 18,
-    fontWeight: '800',
-  },
-});

@@ -14,7 +14,7 @@ export const WRAPPED_SCREEN_WIDTH: number =
 
 export const IS_SMALL_DEVICE: boolean = SCREEN_WIDTH < 375;
 export const IS_SHORT_DEVICE: boolean = SCREEN_HEIGHT < 700;
-
+export const IS_LARGE_SCREEN = SCREEN_HEIGHT > 800;
 // export const STATUS_BAR_HEIGHT:number = getStatusBarHeight();
 
 export const IS_ANDROID: boolean = Platform.OS === 'android';
