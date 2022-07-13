@@ -8,7 +8,7 @@ import {validationSchema} from './validationSchema';
 import Box from '../../../components/Box';
 import {WRAPPER_MARGIN} from '../../../consts/LAYOUT';
 import {NavigationProps} from '../../../utils/types';
-import useHeader from '../../../hooks/useGoBack';
+import useHeader from '../../../hooks/useHeader';
 import FormikErrors from '../../../components/FormikError';
 
 const ForgotPassword: React.FC<NavigationProps> = ({navigation}) => {

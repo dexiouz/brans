@@ -6,7 +6,9 @@ export const SHADOW = '#0b0d0f';
 export const SECONDARY = '#340c75';
 export const SECONDARY_DARK = '#2b0c5c';
 
-export const PRIMARY = '#FEDE4D';
+// export const PRIMARY = '#FEDE4D';
+export const PRIMARY = '#D4AF37';
+// export const PRIMARY = '#EEBC1D';
 export const PRIMARY_DARK = '#75620c';
 export const DAVY_GREY = '#595959';
 export const LIGHT_GREY = '#9a9a9a';

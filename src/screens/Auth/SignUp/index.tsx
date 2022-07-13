@@ -3,7 +3,7 @@ import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Button from '../../../components/Button';
 import TemplateTextInput from '../../../components/TemplateTextInput';
-import Picker from '../../../components/TemplatePicker/';
+import TemplatePicker from '../../../components/TemplatePicker/';
 import {StyleSheet} from 'react-native';
 import {validationSchema} from './valdationSchema';
 import FormikErrors from '../../../components/FormikError';
@@ -34,7 +34,7 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
           errors,
         }) => (
           <>
-            <Picker
+            <TemplatePicker
               topLabel="How do you want to use brans"
               items={userTypes}
               placeholder="Select..."

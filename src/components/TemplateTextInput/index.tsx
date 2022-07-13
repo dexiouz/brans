@@ -20,6 +20,8 @@ import {
   WHITE_OPACITY15,
   WHITE_OPACITY10,
   WHITE_OPACITY80,
+  WHITE_OPACITY60,
+  WHITE_OPACITY40,
   ERROR_RED,
 } from '../../consts/COLOURS';
 import TemplateIcon from '../TemplateIcon/';
@@ -65,6 +67,7 @@ const TemplateTextInput: FC<TemplateTextInputProps> = ({
   error,
   name,
   labelIcon,
+  labelWrapperStyle,
   labelTextStyle,
   ...restProps
 }) => {
@@ -81,7 +84,7 @@ const TemplateTextInput: FC<TemplateTextInputProps> = ({
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={styles.labelChilderenWrapper}>
-        <View style={styles.labelWrapper}>
+        <View style={[styles.labelWrapper, labelWrapperStyle]}>
           {labelIcon && (
             <View style={{paddingRight: 10}}>
               <TemplateIcon
@@ -104,7 +107,7 @@ const TemplateTextInput: FC<TemplateTextInputProps> = ({
       </View>
 
       <TextInput
-        placeholderTextColor={WHITE}
+        placeholderTextColor={WHITE_OPACITY80}
         name={name}
         style={[
           {

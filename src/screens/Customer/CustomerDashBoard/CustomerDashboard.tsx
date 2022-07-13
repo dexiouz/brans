@@ -18,7 +18,7 @@ import {
 import Box from '../../../components/Box';
 import HomeCards from '../../../components/Cards/HomeCards';
 import {Title} from '../../../components/header/screenOptions';
-import RecentBookings from '../../../components/Cards/RecentBookings';
+import BookingCard from '../../../components/Cards/BookingCard';
 import FloatingButton from '../../../components/Button/FloatingButton';
 
 const CustomerDashboard: FC<NavigationProps> = ({navigation}) => {
@@ -27,7 +27,7 @@ const CustomerDashboard: FC<NavigationProps> = ({navigation}) => {
       headerRight: () => (
         <TemplateTouchable
           style={{marginRight: WRAPPER_MARGIN}}
-          onPress={() => navigation.goBack()}>
+          onPress={() => navigation.navigate('CustomerSettings')}>
           <Ionicons name="settings-outline" color={WHITE} size={24} />
         </TemplateTouchable>
       ),
@@ -47,12 +47,12 @@ const CustomerDashboard: FC<NavigationProps> = ({navigation}) => {
         <Box mt={WRAPPER_MARGIN}>
           <Title title="Recent Bookings" />
         </Box>
-        <RecentBookings />
-        <RecentBookings />
-        <RecentBookings />
-        <RecentBookings />
-        <RecentBookings />
-        <RecentBookings />
+        <BookingCard />
+        <BookingCard />
+        <BookingCard />
+        <BookingCard />
+        <BookingCard />
+        <BookingCard />
       </ScrollView>
       <FloatingButton
         bgColor={PRIMARY}

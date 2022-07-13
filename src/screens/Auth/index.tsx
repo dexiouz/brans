@@ -26,7 +26,7 @@ const screens = [
 ];
 const App = () => {
   return (
-    <Box flex>
+    <Box flex pt={20}>
       <TemplateTab screens={screens} />
     </Box>
   );

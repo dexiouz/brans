@@ -17,6 +17,7 @@ import {
   SCREEN_WIDTH,
 } from '../../consts/LAYOUT';
 import Box from '../Box';
+import {Title} from '../header/screenOptions';
 
 const size = SCREEN_WIDTH * 0.31;
 interface Props {
@@ -31,10 +32,10 @@ const HomeCards: FC<Props> = ({number, title}) => {
       center
       backgroundColor={CARD_BACKGROUND}
       borderRadius={RADIUS_SMALL}>
-      <TemplateText bold mb={SPACE_SMALL}>
-        {number}
+      <Title title={number} containerStyle={{marginBottom: SPACE_SMALL}} />
+      <TemplateText color={WHITE_OPACITY60} size={16}>
+        {title}
       </TemplateText>
-      <TemplateText color={WHITE_OPACITY60}>{title}</TemplateText>
     </Box>
   );
 };

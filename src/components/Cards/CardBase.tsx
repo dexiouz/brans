@@ -16,16 +16,18 @@ interface Props {
   children?: React.ReactNode;
   onPress?: () => void | undefined;
 }
-const CardBase: FC<Props> = ({onPress, children}) => {
+const CardBase: FC<Props> = ({onPress, children, height, ...restProps}) => {
   return (
     <Box
       onPress={onPress}
       backgroundColor={CARD_BACKGROUND}
-      height={110}
+      height={height || 110}
+      minHeight={40}
       borderRadius={RADIUS_SMALL}
       row
       mt={WRAPPER_MARGIN / 2}
-      overflow="hidden">
+      overflow="hidden"
+      {...restProps}>
       {children}
     </Box>
   );

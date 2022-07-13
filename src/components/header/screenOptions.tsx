@@ -1,10 +1,20 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, TextStyle, ViewStyle} from 'react-native';
 import {BACKGROUND, PRIMARY, WHITE, HEADER} from '../../consts/COLOURS';
 import {IS_LARGE_SCREEN, IS_ANDROID} from '../../consts/LAYOUT';
+import Box from '../Box';
 import TemplateText from '../TemplateText';
+import {BoxProps} from '../../components/Box';
 
+interface Props extends BoxProps {
+  title: string;
+  textStyle?: TextStyle;
+  containerStyle?: ViewStyle;
+}
 const headerStyleApp = {
+  elevation: 0, // remove shadow on Android
+  shadowOpacity: 0, // remove shadow on iOS
+  borderBottomWidth: 0, // Just in case.
   backgroundColor: BACKGROUND,
   shadowColor: 'transparent',
   height: IS_LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
@@ -14,17 +24,13 @@ const headerStyleAuth = {
   shadowColor: 'transparent',
   height: IS_LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
 };
-const headerTitleStyle = {
-  textAlign: 'center',
-};
+
 export const STANDARD_HEADER_AUTH = {
   headerBackTitleVisible: false,
   headerTintColor: WHITE,
   headerStyle: headerStyleAuth,
   headerTitle: () => <Title title="brans" />,
   headerTitleAlign: 'center',
-  headerTitleStyle: headerTitleStyle,
-  cardStyle: {backgroundColor: 'red'},
 };
 
 export const STANDARD_HEADER_APP = {
@@ -33,14 +39,19 @@ export const STANDARD_HEADER_APP = {
   headerTitle: () => <Title title="brans" />,
   headerStyle: headerStyleApp,
   headerTitleAlign: 'center',
-  headerTitleStyle: headerTitleStyle,
-  cardStyle: {backgroundColor: BACKGROUND},
 };
 
-export const Title = ({title}) => (
-  <TemplateText color={WHITE} bold size={18}>
-    {title}
-  </TemplateText>
+export const Title: React.FC<Props> = ({
+  title,
+  textStyle,
+  containerStyle,
+  ...restProps
+}) => (
+  <Box style={containerStyle} {...restProps}>
+    <TemplateText color={WHITE} bold size={18} style={textStyle}>
+      {title}
+    </TemplateText>
+  </Box>
 );
 
 export default {

@@ -127,7 +127,7 @@ const renderIcon = (
   }
 };
 
-const CustomIcon = ({
+const TemplateIcon = ({
   iconFamily,
   name,
   size,
@@ -143,7 +143,7 @@ const CustomIcon = ({
   </View>
 );
 
-export default CustomIcon;
+export default TemplateIcon;
 
 const styles = StyleSheet.create({
   label: {

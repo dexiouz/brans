@@ -12,14 +12,14 @@ import Box from '../Box';
 import TemplateText from '../TemplateText';
 import Loader from '../Loader';
 import {BoxProps} from '../Box';
-interface Props extends BoxProps {
+export interface ButtonProps extends BoxProps {
   disabled?: boolean;
   primary?: boolean;
   secondary?: boolean;
   bold?: boolean;
   semiBold?: boolean;
   transparent?: boolean;
-  round?: boolean;
+  round?: boolean | number;
   caps?: boolean;
   children?: React.ReactElement | string | null;
   onPress?: () => void;
@@ -32,7 +32,7 @@ interface Props extends BoxProps {
   width?: number | string;
 }
 
-const Button: React.FC<Props> = ({
+const Button: React.FC<ButtonProps> = ({
   disabled,
   primary = true,
   secondary,
@@ -52,7 +52,6 @@ const Button: React.FC<Props> = ({
   width,
   ...restProps
 }) => {
-  console.log({loading});
   let content = children;
 
   const containerStyle: ViewStyle = {
@@ -119,7 +118,7 @@ const Button: React.FC<Props> = ({
       style={style ? [...styleGroup, style] : styleGroup}
       vGradient
       gradientColors={gradientColors}
-      borderRadius={round ? 2 : 0}
+      borderRadius={round ? round : 2}
       opacity={disabled ? 0.6 : 1}
       center={center}
       height={height}
