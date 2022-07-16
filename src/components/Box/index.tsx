@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {PRIMARY_GRADIENT} from '../../consts/COLOURS';
 import {SHADOW} from '../../consts/SHADOW';
 import {IS_ANDROID, SPACE_LARGE} from '../../consts/LAYOUT';
-// import {wp} from '../../utils/getResponsiveSize';
+import {wp} from '../../utils/getResponsiveSize';
 
 export interface BoxProps extends Animated.AnimatedProps<object, any> {
   animated?: boolean;
@@ -184,8 +184,7 @@ const Box: React.FC<BoxProps> = ({
 
   const fadeOpacity = useRef(new Animated.Value(0)).current;
   const slideValue = useRef(
-    // new Animated.ValueXY({x: slideIn ? wp(SPACE_LARGE) : 0, y: 0}),
-    new Animated.ValueXY({x: slideIn ? SPACE_LARGE : 0, y: 0}),
+    new Animated.ValueXY({x: slideIn ? wp(SPACE_LARGE) : 0, y: 0}),
   ).current;
 
   useEffect(() => {
@@ -194,7 +193,7 @@ const Box: React.FC<BoxProps> = ({
         Animated.timing(fadeOpacity, {
           toValue: opacity || opacity === 0 ? opacity : 1,
           duration: ((fadeInTime || fadeInTime === 0) && fadeInTime) || 750,
-          useNativeDriver: true,,
+          useNativeDriver: true,
         }).start();
       }, fadeInDelay || 0);
     }
@@ -206,7 +205,7 @@ const Box: React.FC<BoxProps> = ({
         Animated.timing(slideValue, {
           toValue: {x: 0, y: 0},
           duration: ((slideInTime || slideInTime === 0) && slideInTime) || 500,
-          useNativeDriver: true,,
+          useNativeDriver: true,
         }).start();
       }, slideInDelay || 0);
     }
@@ -339,7 +338,7 @@ const styles = StyleSheet.create({
   vCenter: {alignItems: 'center'},
   selfCenter: {alignSelf: 'center'},
   spaceBetween: {justifyContent: 'space-between'},
-  row: {flexDirection: 'row'},,
+  row: {flexDirection: 'row'},
 });
 
 export default Box;
