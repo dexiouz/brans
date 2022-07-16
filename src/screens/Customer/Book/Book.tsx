@@ -33,11 +33,11 @@ const Book: FC<NavigationProps> = ({navigation}) => {
     });
   }, [navigation]);
 
-  // useEffect(() => {
-  //   if (isFocused) {
-  //     setVisible(true);
-  //   }
-  // }, [isFocused]);
+  useEffect(() => {
+    if (isFocused) {
+      setVisible(true);
+    }
+  }, [isFocused]);
   const screens = [
     {
       component: All,

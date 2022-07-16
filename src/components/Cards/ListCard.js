@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Box from '../Box';
 import TemplateText from '../TemplateText';
-import {SPACE_MEDIUM} from '../../consts/LAYOUT';
+import { SPACE_MEDIUM } from '../../consts/LAYOUT';
 import TemplatePicker from '../TemplatePicker';
-import {BACKGROUND} from '../../consts/COLOURS';
+import { BACKGROUND } from '../../consts/COLOURS';
 import TemplateTextInput from '../TemplateTextInput';
 
 const ListCard = ({
@@ -36,9 +36,9 @@ const ListCard = ({
         <TemplateTextInput
           name="name"
           autoCapitalize="words"
-          placeholder="0"
+          placeholder={quantity.toString() || 0}
           value={quantity}
-          inputStyle={{height: 41}}
+          inputStyle={{ height: 41 }}
           keyboardType="number-pad"
           onChangeText={value => setQuantity(value)}
         />
