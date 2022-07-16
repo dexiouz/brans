@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
-import {WRAPPER_MARGIN} from '../../consts/LAYOUT';
+import {StyleSheet, View, ViewStyle} from 'react-native';
+import {WRAPPER_MARGIN, RADIUS_SMALL} from '../../consts/LAYOUT';
 import Box from '../Box';
 import TemplateText from '../TemplateText';
 import CardBase from './CardBase';
-import {WHITE_OPACITY80} from '../../consts/COLOURS';
+import {WHITE_OPACITY80, PRIMARY, CARD_BACKGROUND} from '../../consts/COLOURS';
+// import {styles} from '../../consts/SHADOW';
 
-interface Props {}
-const BookingDetailsCard: React.FC<Props> = () => {
+interface Props {
+  style: ViewStyle;
+}
+const BookingDetailsCard: React.FC<Props> = ({style}) => {
   return (
-    <CardBase height={80} ph={10}>
+    <View style={[styles.card, style]}>
       <Box width="40%" hCenter>
         <TemplateText size={16} color={WHITE_OPACITY80}>
           Trousers(jeans, chinos, plain)
@@ -30,8 +33,25 @@ const BookingDetailsCard: React.FC<Props> = () => {
           1000000
         </TemplateText>
       </Box>
-    </CardBase>
+      <TemplateText
+        size={10}
+        color={PRIMARY}
+        style={{position: 'absolute', left: 2, top: 20}}>
+        {16}
+      </TemplateText>
+    </View>
   );
 };
 
 export default BookingDetailsCard;
+
+const styles = StyleSheet.create({
+  card: {
+    flexDirection: 'row',
+    backgroundColor: CARD_BACKGROUND,
+    borderRadius: RADIUS_SMALL,
+    marginTop: WRAPPER_MARGIN / 2,
+    minHeight: 50,
+    padding: 10,
+  },
+});

@@ -45,9 +45,15 @@ const header = [
   },
 ];
 // const arr = [];
-const NewBookingCard = ({item, index}) => {
+const NewBookingCard = ({
+  item,
+  index,
+  onPress,
+  customQuantity,
+  buttonTitle,
+}) => {
   const [type, setType] = useState('');
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(customQuantity || 0);
   const [amount, setAmount] = useState(200);
 
   const {arr, bookItems, setBookItems} = useContext(BookItemsContext);
@@ -56,6 +62,9 @@ const NewBookingCard = ({item, index}) => {
   const keys = Object.keys(item);
 
   const handleAddToCart = () => {
+    if (onPress) {
+      return onPress();
+    }
     console.log({category, type, quantity});
     const cartObj = {
       category,
@@ -105,7 +114,7 @@ const NewBookingCard = ({item, index}) => {
         disabled={disabled}
         style={[styles.smallBtn, disabled && {backgroundColor: 'grey'}]}
         onPress={handleAddToCart}>
-        <TemplateText>Add to Basket</TemplateText>
+        <TemplateText>{buttonTitle || 'Add to Basket'}</TemplateText>
       </TouchableOpacity>
     </Box>
   );
@@ -121,7 +130,7 @@ const styles = StyleSheet.create({
   smallBtn: {
     alignSelf: 'flex-end',
     backgroundColor: PRIMARY,
-    // width: 100,
+    minWidth: 100,
     top: 10,
     paddingVertical: 7,
     paddingHorizontal: 7,

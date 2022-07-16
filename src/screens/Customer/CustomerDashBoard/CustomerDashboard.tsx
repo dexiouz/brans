@@ -1,20 +1,10 @@
 import React, {FC} from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import TemplateText from '../../../components/TemplateText';
 import {NavigationProps} from '../../../utils/types';
 import TemplateTouchable from '../../../components/TemplateTouchable';
-import {
-  DAVY_GREY,
-  WHITE,
-  CARD_BACKGROUND,
-  PRIMARY,
-} from '../../../consts/COLOURS';
-import {
-  WRAPPER_MARGIN,
-  RADIUS_SMALL,
-  SPACE_SMALL,
-} from '../../../consts/LAYOUT';
+import {DAVY_GREY, WHITE, PRIMARY} from '../../../consts/COLOURS';
+import {WRAPPER_MARGIN} from '../../../consts/LAYOUT';
 import Box from '../../../components/Box';
 import HomeCards from '../../../components/Cards/HomeCards';
 import {Title} from '../../../components/header/screenOptions';
@@ -57,7 +47,7 @@ const CustomerDashboard: FC<NavigationProps> = ({navigation}) => {
       <FloatingButton
         bgColor={PRIMARY}
         iconColor={WHITE}
-        onPressFunc={() => {}}
+        onPressFunc={() => navigation.navigate('Book')}
         title="Book"
       />
     </Box>
