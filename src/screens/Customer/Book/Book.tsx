@@ -13,11 +13,11 @@ import All from './All';
 import {Title} from '../../../components/header/screenOptions';
 import SmallButton from '../../../components/Button/SmallButton';
 import SetLocationModal from '../../../components/Modal/SetLocationModal';
-import SetManualLocation from '../../../components/Modal/SetManualLocation';
 const Book: FC<NavigationProps> = ({navigation}) => {
   const isFocused = useIsFocused();
   const [visible, setVisible] = useState(true);
   const [manualVisible, setManualVisible] = useState(false);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => <Title title="" />,
@@ -33,6 +33,11 @@ const Book: FC<NavigationProps> = ({navigation}) => {
     });
   }, [navigation]);
 
+  // useEffect(() => {
+  //   if (isFocused) {
+  //     setVisible(true);
+  //   }
+  // }, [isFocused]);
   const screens = [
     {
       component: All,

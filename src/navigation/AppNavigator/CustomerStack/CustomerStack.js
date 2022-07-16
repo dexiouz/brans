@@ -6,7 +6,7 @@ import BookingDetails from '../../../screens/Customer/Bookings/BookDetails';
 import CustomerSettings from '../../../screens/Customer/CustomerSettings/CustomerSettings';
 import RateService from '../../../screens/Customer/Bookings/RateService';
 import PlaceOrder from '../../../screens/Customer/Book/PlaceOrder';
-import Cart from '../../../screens/Customer/Bookings/Cart';
+import Cart from '../../../screens/Customer/Book/Cart';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 const CustomerStackScreen = () => (

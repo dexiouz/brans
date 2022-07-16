@@ -190,7 +190,7 @@ TemplateText.defaultProps = {
 const styles = StyleSheet.create({
   default: {
     // fontSize: IS_SHORT_DEVICE ? hp(14) : hp(16),
-    color: WHITE_OPACITY60,
+    color: '#fff',
   },
 });
 
