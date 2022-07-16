@@ -28,7 +28,7 @@ interface PickerProps extends PickerSelectProps {
   labelTextStyle?: TextStyle;
   error?: string;
 }
-const Picker: FC<PickerProps> = ({
+const TemplatePicker: FC<PickerProps> = ({
   placeholder,
   pickerStyle,
   pickerContainerStyle,
@@ -74,7 +74,7 @@ const Picker: FC<PickerProps> = ({
     </View>
   );
 };
-export default Picker;
+export default TemplatePicker;
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
@@ -91,10 +91,8 @@ const pickerSelectStyles = StyleSheet.create({
   },
   inputAndroid: {
     color: WHITE,
-    marginLeft: -6,
-    paddingVertical: 20,
-    paddingRight: 30,
-    fontSize: 16,
+    marginLeft: -12,
+    fontSize: 12,
   },
   iconContainer: {
     marginRight: 5,
@@ -122,7 +120,7 @@ const styles = StyleSheet.create({
   },
   pickerContainerView: {
     justifyContent: 'center',
-    height: 45,
+    height: 40,
     marginVertical: 10,
     width: '100%',
     borderRadius: 3,

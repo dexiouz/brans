@@ -1,24 +1,35 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import {Formik} from 'formik';
 import {ScrollView} from 'react-native';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Button from '../../../components/Button';
 import TemplateTextInput from '../../../components/TemplateTextInput';
-import ErrorText from '../../../components/ErrorText';
 import {validationSchema} from './validationSchema';
-import {WRAPPER_MARGIN} from '../../../consts/LAYOUT';
+import {WRAPPER_MARGIN, SCREEN_HEIGHT} from '../../../consts/LAYOUT';
 import Box from '../../../components/Box';
-import {LIGHT_GREY, DAVY_GREY, BACKGROUND} from '../../../consts/COLOURS';
+import {
+  LIGHT_GREY,
+  DAVY_GREY,
+  BACKGROUND,
+  WHITE_OPACITY15,
+  CARD_BACKGROUND,
+  WHITE,
+} from '../../../consts/COLOURS';
 import {NavigationProps} from '../../../utils/types';
-import useHeader from '../../../hooks/useGoBack';
+import useHeader from '../../../hooks/useHeader';
 import {initialValues} from './initialValues';
 import FormikErrors from '../../../components/FormikError';
-
+import ServiceImage from '../../../components/ServiceImage/ServiceImage';
+import {Title} from '../../../components/header/screenOptions';
 const size = 80;
-const CreateService: React.FC<NavigationProps> = () => {
-  useHeader('Create your service');
+const CreateService: React.FC<NavigationProps> = ({navigation}) => {
+  // useHeader('Create your service');
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => <Title title="Create your service" />,
+    });
+  }, [navigation]);
   return (
     <ScrollView
       style={{flex: 1}}
@@ -28,7 +39,8 @@ const CreateService: React.FC<NavigationProps> = () => {
         showsVerticalScrollIndicator={false}
         enableOnAndroid>
         <>
-          <Box
+          <ServiceImage />
+          {/* <Box
             height={150}
             backgroundColor={LIGHT_GREY}
             mb={WRAPPER_MARGIN}
@@ -45,7 +57,7 @@ const CreateService: React.FC<NavigationProps> = () => {
               bottom={-45}
               borderRadius={150}
             />
-          </Box>
+          </Box> */}
           <Box ph={WRAPPER_MARGIN} flex={6} mt={WRAPPER_MARGIN}>
             <Formik
               initialValues={initialValues}
@@ -147,7 +159,9 @@ const CreateService: React.FC<NavigationProps> = () => {
                     returnKeyType="next"
                     autoCapitalize="none"
                     autoCorrect={false}
+                    multiline
                     value={values.aboutBrand}
+                    inputStyle={styles.textArea}
                     onChangeText={handleChange('aboutBrand')}
                     onBlur={handleBlur('aboutBrand')}
                     error={
@@ -206,5 +220,23 @@ export default CreateService;
 const styles = StyleSheet.create({
   contentContainerStyle: {
     paddingBottom: WRAPPER_MARGIN,
+  },
+  textArea: {
+    ...Platform.select({
+      android: {
+        height: SCREEN_HEIGHT * 0.12,
+      },
+      ios: {
+        height: SCREEN_HEIGHT * 0.14,
+      },
+    }),
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    fontSize: 16,
+    backgroundColor: WHITE_OPACITY15,
+    borderRadius: 5,
+    // margin: 20,
+    textAlignVertical: 'top',
+    color: WHITE,
   },
 });

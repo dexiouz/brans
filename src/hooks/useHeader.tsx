@@ -14,11 +14,6 @@ const useHeader = (headerTitle: string) => {
   const navigation = useNavigation();
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
-        <TemplateTouchable onPress={() => navigation.goBack()}>
-          <MaterialIcons name="arrow-back-ios" color={WHITE} size={24} />
-        </TemplateTouchable>
-      ),
       headerTitle: () =>
         headerTitle ? <Title title={headerTitle} /> : <Title title="brans" />,
     });

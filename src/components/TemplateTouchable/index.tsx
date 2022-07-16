@@ -21,8 +21,8 @@ const TemplateTouchable: React.FC<Props> = ({
   return (
     <TouchableOpacity
       disabled={disabled}
-      {...restProps}
       onPress={onPress}
+      {...restProps}
       style={style}
       activeOpacity={disabled ? 0.6 : activeOpacity}>
       {children}

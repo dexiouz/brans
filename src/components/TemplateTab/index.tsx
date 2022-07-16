@@ -28,28 +28,26 @@ interface Props {
 
 const TemplateTab: FC<Props> = ({screens}) => {
   return (
-    <Box flex mt={20}>
-      <Navigator
-        initialRouteName="SignIn"
-        screenOptions={{
-          tabBarActiveTintColor: WHITE,
-          tabBarLabelStyle: styles.tabBarLabelStyle,
-          tabBarItemStyle: styles.tabBarItemStyle,
-          tabBarStyle: styles.tabBarStyle,
-          tabBarIndicatorStyle: styles.tabBarIndicatorStyle,
-        }}
-        sceneContainerStyle={styles.navigator}>
-        {screens.map((screen: Props) => (
-          <Screen
-            name={screen?.label}
-            component={screen?.component}
-            options={{
-              tabBarLabel: screen?.label,
-            }}
-          />
-        ))}
-      </Navigator>
-    </Box>
+    <Navigator
+      initialRouteName="SignIn"
+      screenOptions={{
+        tabBarActiveTintColor: WHITE,
+        tabBarLabelStyle: styles.tabBarLabelStyle,
+        tabBarItemStyle: styles.tabBarItemStyle,
+        tabBarStyle: styles.tabBarStyle,
+        tabBarIndicatorStyle: styles.tabBarIndicatorStyle,
+      }}
+      sceneContainerStyle={styles.navigator}>
+      {screens.map((screen: Props) => (
+        <Screen
+          name={screen?.label}
+          component={screen?.component}
+          options={{
+            tabBarLabel: screen?.label,
+          }}
+        />
+      ))}
+    </Navigator>
   );
 };
 
@@ -67,6 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND,
     width: '90%',
     alignSelf: 'center',
+    elevation: 0,
   },
   tabBarIndicatorStyle: {
     backgroundColor: PRIMARY,

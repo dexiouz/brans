@@ -26,10 +26,12 @@ export interface BoxProps extends Animated.AnimatedProps<object, any> {
   hCenter?: boolean;
   selfCenter?: boolean;
   spaceBetween?: boolean;
+  spaceEven?: boolean;
   flex?: boolean | number;
   flexGrow?: boolean | number;
   flexWrap?: string;
   row?: boolean;
+  column?: boolean;
   mAll?: number | null;
   mt?: number | false;
   mb?: number | false;
@@ -62,6 +64,12 @@ export interface BoxProps extends Animated.AnimatedProps<object, any> {
     | Animated.Node<number>
     | string
     | false;
+  minHeight?:
+    | number
+    | Animated.Value<number>
+    | Animated.Node<number>
+    | string
+    | false;
   borderRadius?: number;
   borderBottomLeftRadius?: number;
   borderBottomRightRadius?: number;
@@ -69,6 +77,7 @@ export interface BoxProps extends Animated.AnimatedProps<object, any> {
   borderTopRightRadius?: number | false;
   justifyContent?: string | false;
   alignItems?: string | false;
+  flexEnd?: string | boolean | false;
   backgroundColor?:
     | string
     | ColorValue
@@ -118,10 +127,13 @@ const Box: React.FC<BoxProps> = ({
   hCenter,
   selfCenter,
   spaceBetween,
+  spaceEven,
   flex,
   flexGrow,
   flexWrap,
   row,
+  column,
+  flexEnd,
   mAll,
   mt,
   mb,
@@ -138,6 +150,7 @@ const Box: React.FC<BoxProps> = ({
   pb,
   width,
   minWidth,
+  minHeight,
   height,
   borderRadius,
   borderBottomLeftRadius,
@@ -222,7 +235,10 @@ const Box: React.FC<BoxProps> = ({
         vCenter && styles.vCenter,
         selfCenter && styles.selfCenter,
         spaceBetween && styles.spaceBetween,
+        spaceEven && styles.spaceEven,
         row && styles.row,
+        column && styles.column,
+        flexEnd && {flexEnd},
         !!mAll && {margin: mAll},
         !!mt && {marginTop: mt},
         !!mb && {marginBottom: mb},
@@ -235,6 +251,7 @@ const Box: React.FC<BoxProps> = ({
         !!mv && {marginVertical: mv},
         !!width && {width},
         !!minWidth && {minWidth},
+        !!minHeight && {minHeight},
         !!height && {height},
         !!pAll && {padding: pAll},
         !!ph && {paddingHorizontal: ph},
@@ -338,7 +355,9 @@ const styles = StyleSheet.create({
   vCenter: {alignItems: 'center'},
   selfCenter: {alignSelf: 'center'},
   spaceBetween: {justifyContent: 'space-between'},
+  spaceEven: {justifyContent: 'space-evenly'},
   row: {flexDirection: 'row'},
+  column: {flexDirection: 'column'},
 });
 
 export default Box;

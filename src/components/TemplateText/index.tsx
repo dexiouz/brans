@@ -2,7 +2,7 @@
 import React from 'react';
 import {StyleSheet, Text, TextStyle, TextProps} from 'react-native';
 import {startCase as startCaseFunc} from 'lodash';
-import {WHITE} from '../../consts/COLOURS';
+import {WHITE, WHITE_OPACITY60, WHITE_OPACITY80} from '../../consts/COLOURS';
 import {IS_SHORT_DEVICE} from '../../consts/LAYOUT';
 import {hp} from '../../utils/getResponsiveSize';
 
@@ -45,6 +45,7 @@ export interface Props extends TextProps {
   adjustsFontSizeToFit?: boolean;
   style?: TextStyle | TextStyle[] | null;
   children?: string | React.ReactChild | null;
+  white?: boolean | string;
 }
 
 const TemplateText: React.FC<Props> = ({
@@ -62,6 +63,7 @@ const TemplateText: React.FC<Props> = ({
   pt = 0,
   pr = 0,
   pb = 0,
+  white,
   light = false,
   medium = false,
   bold = false,
@@ -103,6 +105,7 @@ const TemplateText: React.FC<Props> = ({
         styles.default,
         style && style,
         textStyle,
+        !!white && {color: 'white'},
         !!mAll && {margin: mAll},
         !!mt && {marginTop: mt},
         !!mb && {marginBottom: mb},
@@ -186,8 +189,8 @@ TemplateText.defaultProps = {
 
 const styles = StyleSheet.create({
   default: {
-    fontSize: IS_SHORT_DEVICE ? hp(15) : hp(18),
-    color: WHITE,
+    // fontSize: IS_SHORT_DEVICE ? hp(14) : hp(16),
+    color: '#fff',
   },
 });
 
