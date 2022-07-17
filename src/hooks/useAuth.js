@@ -5,15 +5,18 @@ import { useMutation, useApolloClient } from '@apollo/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View } from 'react-native';
 import { AuthContext } from '../context/authContext';
-import { SIGN_IN, SIGN_UP, LOGOUT } from '../graphql/mutations';
+import { SIGN_IN, SIGN_UP, CHANGE_PASSWORD, LOGOUT } from '../graphql/mutations';
 
 const useAuth = () => {
     const client = useApolloClient();
     const { signIn, signOut } = useContext(AuthContext);
     const [register, { loading: signUpLoading }] = useMutation(SIGN_UP);
     const [login, { loading: signInLoading }] = useMutation(SIGN_IN);
-    const [logout, { loading }] = useMutation(LOGOUT);
+    const [changePassword, { loading: changePasswordLoading }] = useMutation(CHANGE_PASSWORD);
+    const [logout, { loading: logOutLoading }] = useMutation(LOGOUT);
     const [validationError, setValidationError] = useState(null);
+
+    const loading = signInLoading || signUpLoading || logOutLoading || changePasswordLoading;
 
     const handleSignIn = async ({ emailOrPhone, password }) => {
         const data = {
@@ -69,6 +72,26 @@ const useAuth = () => {
         }
     };
 
+    const handleChangePassword = async ({ password, oldPassword }) => {
+        const data = {
+            newPassword: password,
+            currentPassword: oldPassword,
+        };
+        try {
+            const response = await changePassword({
+                variables: {
+                    data,
+                },
+            });
+            if (response) {
+                console.log('response', response);
+            }
+        } catch (error) {
+            console.log('graphql change password error', error);
+            setValidationError(error?.toString());
+        }
+    };
+
     const handleSignOut = async () => {
         const handleClearAsyncStorage = async () => {
             const asyncStorageKeys = await AsyncStorage.getAllKeys();
@@ -77,20 +100,23 @@ const useAuth = () => {
             }
         };
         try {
-            await logout();
+            // await logout();
             await client.clearStore();
             await handleClearAsyncStorage();
             await signOut();
         } catch (error) {
-            console.log('Sign out error', error);
+            await handleClearAsyncStorage();
+            // setValidationError(error?.toString());
+            console.log('graphql sign out error', error);
         }
     };
     return {
-        loading: signInLoading || signUpLoading,
+        loading,
         validationError,
         handleSignIn,
         handleSignUp,
         handleSignOut,
+        handleChangePassword,
     };
 };
 

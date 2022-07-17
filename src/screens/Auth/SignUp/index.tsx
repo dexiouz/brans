@@ -10,6 +10,7 @@ import FormikErrors from '../../../components/FormikError';
 import {initialValues} from './initialValues';
 import {NavigationProps} from '../../../utils/types';
 import useAuth from '../../../hooks/useAuth';
+import {RADIUS_XSMALL} from '../../../consts/LAYOUT';
 export const userTypes = [
   {label: 'Customer', value: 'customer'},
   {label: 'Service Provider', value: 'serviceProvider'},
@@ -19,7 +20,7 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
   const {handleSignUp, loading, validationError} = useAuth();
   return (
     <KeyboardAwareScrollView
-      contentContainerStyle={styles.contentContainerStyle}
+      style={styles.container}
       showsVerticalScrollIndicator={false}
       enableOnAndroid>
       <Formik
@@ -116,7 +117,8 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
 
             <Button
               mt={20}
-              // onPress={() => handleSubmit()}
+              radius={RADIUS_XSMALL}
+              onPress={handleSubmit}
               loading={loading}
               disabled={loading}>
               Sign up
@@ -131,7 +133,7 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  contentContainerStyle: {
+  container: {
     flex: 1,
     paddingTop: 20,
   },

@@ -16,7 +16,8 @@ import {validationSchema} from './validationSchema';
 import useAuth from '../../../hooks/useAuth';
 
 const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
-  const {handleSignOut} = useAuth();
+  const {handleSignOut, handleChangePassword, loading, validationError} =
+    useAuth();
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => <Title title="Settings" />,
@@ -40,7 +41,7 @@ const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
             confirmPassword: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={() => {}}>
+          onSubmit={values => handleChangePassword(values)}>
           {({
             handleChange,
             handleBlur,
@@ -127,7 +128,11 @@ const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
                   touched={touched.confirmPassword || null}
                   errors={errors.confirmPassword || null}
                 />
-                <Button mt={20} onPress={handleSubmit}>
+                <Button
+                  mt={20}
+                  loading={loading}
+                  disabled={loading}
+                  onPress={handleSubmit}>
                   Submit
                 </Button>
 
@@ -138,6 +143,10 @@ const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
                   style={styles.logOut}>
                   Log out
                 </TemplateText>
+                <FormikErrors
+                  touched={validationError || null}
+                  errors={validationError || null}
+                />
               </Box>
             </Box>
           )}

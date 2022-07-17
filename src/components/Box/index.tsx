@@ -9,7 +9,7 @@ import {
   ColorValue,
   Animated,
 } from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import {PRIMARY_GRADIENT} from '../../consts/COLOURS';
 import {SHADOW} from '../../consts/SHADOW';
 import {IS_ANDROID, SPACE_LARGE} from '../../consts/LAYOUT';
@@ -318,7 +318,7 @@ const Box: React.FC<BoxProps> = ({
           ]}
         />
       )}
-      {/* {(hGradient || vGradient) && (
+      {(hGradient || vGradient) && (
         <LinearGradient
           start={{x: gradientStartBalance || 0, y: gradientStartBalance || 0}}
           end={
@@ -336,7 +336,7 @@ const Box: React.FC<BoxProps> = ({
           ]}
           colors={gradientColors || PRIMARY_GRADIENT}
         />
-      )} */}
+      )}
       {children}
     </Component>
   );

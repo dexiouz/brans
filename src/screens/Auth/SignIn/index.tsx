@@ -1,6 +1,5 @@
-import React, {FC, useContext, useState} from 'react';
+import React, {FC} from 'react';
 import {Formik} from 'formik';
-import {useMutation} from '@apollo/client';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Button from '../../../components/Button';
 import TemplateTextInput from '../../../components/TemplateTextInput';
@@ -9,15 +8,15 @@ import {validationSchema} from './validationSchema';
 import TemplateText from '../../../components/TemplateText';
 import {NavigationProps} from '../../../utils/types';
 import FormikErrors from '../../../components/FormikError';
-import {SIGN_IN} from '../../../graphql/mutations';
-import {AuthContext} from '../../../context/authContext';
 import useAuth from '../../../hooks/useAuth';
+import {RADIUS_XSMALL} from '../../../consts/LAYOUT';
+
 const SignIn: FC<NavigationProps> = ({navigation}) => {
   const {handleSignIn, loading, validationError} = useAuth();
 
   return (
     <KeyboardAwareScrollView
-      contentContainerStyle={styles.contentContainerStyle}
+      style={styles.container}
       showsVerticalScrollIndicator={false}
       enableOnAndroid>
       <Formik
@@ -81,10 +80,9 @@ const SignIn: FC<NavigationProps> = ({navigation}) => {
             <Button
               disabled={loading}
               loading={loading}
-              round
+              round={RADIUS_XSMALL}
               mt={20}
-              // onPress={() => handleSubmit()}
-              >
+              onPress={() => handleSubmit()}>
               Login
             </Button>
             <TemplateText
@@ -105,7 +103,7 @@ const SignIn: FC<NavigationProps> = ({navigation}) => {
 export default SignIn;
 
 const styles = StyleSheet.create({
-  contentContainerStyle: {
+  container: {
     flex: 1,
     paddingTop: 20,
   },

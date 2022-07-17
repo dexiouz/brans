@@ -54,6 +54,7 @@ const CustomerTabNavigator = () => (
       name="Cart"
       component={CartStack}
       options={{
+        tabBarBadge: 3,
         tabBarLabel: 'Cart',
         tabBarIcon: ({ color, size }) => (
           <Feather name="shopping-cart" color={color} size={size} />

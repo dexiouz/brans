@@ -19,6 +19,15 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const CHANGE_PASSWORD = gql`
+  mutation ChangePassword($data: changePasswordInput!) {
+    changePassword(data: $data) {
+      message
+    }
+  }
+`;
+
 export const LOGOUT = gql`
   mutation LogOut {
     logout {
