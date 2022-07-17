@@ -13,8 +13,10 @@ import TemplateTextInput from '../../../components/TemplateTextInput';
 import FormikErrors from '../../../components/FormikError';
 import Button from '../../../components/Button';
 import {validationSchema} from './validationSchema';
+import useAuth from '../../../hooks/useAuth';
 
 const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
+  const {handleSignOut} = useAuth();
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => <Title title="Settings" />,
@@ -128,6 +130,14 @@ const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
                 <Button mt={20} onPress={handleSubmit}>
                   Submit
                 </Button>
+
+                <TemplateText
+                  onPress={handleSignOut}
+                  center
+                  mt={WRAPPER_MARGIN}
+                  style={styles.logOut}>
+                  Log out
+                </TemplateText>
               </Box>
             </Box>
           )}
@@ -139,4 +149,6 @@ const CustomerSettings: React.FC<NavigationProps> = ({navigation}) => {
 
 export default CustomerSettings;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  logOut: {textDecorationLine: 'underline'},
+});

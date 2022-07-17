@@ -15,7 +15,7 @@ const headerStyleApp = {
   elevation: 0, // remove shadow on Android
   shadowOpacity: 0, // remove shadow on iOS
   borderBottomWidth: 0, // Just in case.
-  backgroundColor: BACKGROUND,
+  backgroundColor: HEADER,
   shadowColor: 'transparent',
   height: IS_LARGE_SCREEN && !IS_ANDROID ? 105 : 70,
 };

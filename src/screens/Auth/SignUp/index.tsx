@@ -9,13 +9,14 @@ import {validationSchema} from './valdationSchema';
 import FormikErrors from '../../../components/FormikError';
 import {initialValues} from './initialValues';
 import {NavigationProps} from '../../../utils/types';
+import useAuth from '../../../hooks/useAuth';
 export const userTypes = [
   {label: 'Customer', value: 'customer'},
   {label: 'Service Provider', value: 'serviceProvider'},
 ];
 
 const SignUp: React.FC<NavigationProps> = ({navigation}) => {
-  console.log();
+  const {handleSignUp, loading, validationError} = useAuth();
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.contentContainerStyle}
@@ -24,7 +25,7 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={value => navigation.navigate('CreateService')}>
+        onSubmit={values => handleSignUp(values)}>
         {({
           handleChange,
           handleBlur,
@@ -46,17 +47,17 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
             <TemplateTextInput
               hasLabel
               labelText="Phone or Email"
-              name="phoneOrEmail"
+              name="emailOrPhone"
               blurOnSubmit={false}
               returnKeyType="next"
               autoCapitalize="none"
               autoCorrect={false}
-              value={values.phoneOrEmail}
-              onChangeText={handleChange('phoneOrEmail')}
-              onBlur={handleBlur('phoneOrEmail')}
+              value={values.emailOrPhone}
+              onChangeText={handleChange('emailOrPhone')}
+              onBlur={handleBlur('emailOrPhone')}
               error={
-                touched.phoneOrEmail && errors.phoneOrEmail
-                  ? errors.phoneOrEmail
+                touched.emailOrPhone && errors.emailOrPhone
+                  ? errors.emailOrPhone
                   : ''
               }
             />
@@ -93,8 +94,8 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
               }
             />
             <FormikErrors
-              touched={touched.phoneOrEmail || null}
-              errors={errors.phoneOrEmail || null}
+              touched={touched.emailOrPhone || null}
+              errors={errors.emailOrPhone || null}
             />
             <FormikErrors
               touched={touched.userType || null}
@@ -108,8 +109,16 @@ const SignUp: React.FC<NavigationProps> = ({navigation}) => {
               touched={touched.confirmPassword || null}
               errors={errors.confirmPassword || null}
             />
+            <FormikErrors
+              touched={validationError || null}
+              errors={validationError || null}
+            />
 
-            <Button mt={20} onPress={handleSubmit}>
+            <Button
+              mt={20}
+              // onPress={() => handleSubmit()}
+              loading={loading}
+              disabled={loading}>
               Sign up
             </Button>
           </>

@@ -14,6 +14,7 @@ const FormikErrors: FC<Props> = ({errors, touched}) => {
     <>
       {touched && errors ? (
         <TemplateText
+          size={13}
           mb={5}
           center
           color={ERROR_RED}

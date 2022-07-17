@@ -19,18 +19,19 @@ const header = [
     width: '40%',
     style: {},
   },
-  {
-    title: 'Quantity',
-    width: '20%',
-    style: {
-      right: 20,
-    },
-  },
+
   {
     title: 'Type',
     width: '20%',
     style: {
       right: 5,
+    },
+  },
+  {
+    title: 'Quantity',
+    width: '20%',
+    style: {
+      right: 20,
     },
   },
   {

@@ -1,5 +1,6 @@
-import React, {FC} from 'react';
+import React, {FC, useContext, useState} from 'react';
 import {Formik} from 'formik';
+import {useMutation} from '@apollo/client';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Button from '../../../components/Button';
 import TemplateTextInput from '../../../components/TemplateTextInput';
@@ -8,9 +9,12 @@ import {validationSchema} from './validationSchema';
 import TemplateText from '../../../components/TemplateText';
 import {NavigationProps} from '../../../utils/types';
 import FormikErrors from '../../../components/FormikError';
-
+import {SIGN_IN} from '../../../graphql/mutations';
+import {AuthContext} from '../../../context/authContext';
+import useAuth from '../../../hooks/useAuth';
 const SignIn: FC<NavigationProps> = ({navigation}) => {
-  console.log();
+  const {handleSignIn, loading, validationError} = useAuth();
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.contentContainerStyle}
@@ -19,7 +23,7 @@ const SignIn: FC<NavigationProps> = ({navigation}) => {
       <Formik
         initialValues={{emailOrPhone: '', password: ''}}
         validationSchema={validationSchema}
-        onSubmit={() => {}}>
+        onSubmit={values => handleSignIn(values)}>
         {({
           handleChange,
           handleBlur,
@@ -54,6 +58,7 @@ const SignIn: FC<NavigationProps> = ({navigation}) => {
               returnKeyType="done"
               autoCapitalize="none"
               autoCorrect={false}
+              secureTextEntry
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
@@ -69,7 +74,17 @@ const SignIn: FC<NavigationProps> = ({navigation}) => {
               touched={touched.password || null}
               errors={errors.password || null}
             />
-            <Button round mt={20} onPress={handleSubmit}>
+            <FormikErrors
+              touched={validationError || null}
+              errors={validationError || null}
+            />
+            <Button
+              disabled={loading}
+              loading={loading}
+              round
+              mt={20}
+              // onPress={() => handleSubmit()}
+              >
               Login
             </Button>
             <TemplateText
